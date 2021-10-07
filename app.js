@@ -3,6 +3,7 @@ const logger = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
+require("./configs/passport-config");
 
 const { DB_HOST, PORT = 3003 } = process.env;
 
@@ -30,10 +31,8 @@ app.use((err, req, res, next) => {
 
 mongoose
   .connect(DB_HOST, {
-    useCreateIndex: true,
     useUnifiedTopology: true,
     useNewUrlParser: true,
-    useFindAndModify: false,
   })
   .then(() => {
     app.listen(PORT, function () {
